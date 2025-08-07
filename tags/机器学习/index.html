@@ -174,11 +174,8 @@
 
 应用场景 - 文本分类 - 单词作为特征
 优点 - 分类准确度高，速度快 - 对缺失值不敏感 缺点 -
-样本相互独立，若样本有关联则效果不佳 # 联合概率、条件概率与相互独立
-
-联合概率：包含多个条件，且所有条件同时成立
-条件概率：事件A在另一个事件B已经发生的条件下的发生概率
-相互独立：P(A,B)=P(A)P(B) # 贝叶斯公式 ##...
+样本相互独立，若样本有关联则效果不佳
+联合概率、条件概率与相互独立
       </div>
       <div class="sea-post-meta">
         <div class="sea-post-time">
@@ -237,8 +234,13 @@
       <div class="sea-post-abstract">
         
         转换器 - 特征工程的父类#
-使用流程 - 实例化（Transformer） -
-调用fit_transform（建立分类词频矩阵） 标准化 
+使用流程
+
+实例化（Transformer）
+调用fit_transform（建立分类词频矩阵）
+
+标准化
+
       </div>
       <div class="sea-post-meta">
         <div class="sea-post-time">
@@ -267,8 +269,9 @@
         
         交叉验证#
 将训练数据分为n份，经过n组测试，取平均值得到最终结果，称作n折交叉验证。
-使得被评估的模型更加准确可信。 如四折交叉验证： ![[Pasted image
-20250807192301.png]] # 超参数搜索-网格搜索（Grid...
+使得被评估的模型更加准确可信。
+如四折交叉验证： 
+
       </div>
       <div class="sea-post-meta">
         <div class="sea-post-time">

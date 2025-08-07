@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Verilog语法-1 | GBY's Blog</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="">
+  <meta name="theme-color" content="#10b981">
+
+  <link rel="canonical" href="https://skina.cn/Verilog_1/">
+
+  <link rel="shortcut icon" href="/">
+
+  
+  
+<link rel="stylesheet" href="/css/main.css">
+
+
+  
+  <meta name="description" content="Verilog语法# 逻辑值#  逻辑0：低电平（GND） 逻辑1：高电平（VCC） 逻辑X：电平未知 逻辑Z：高阻态，悬空状态  数据进制格式# 二进制（binary）、八进制（Octal）、十进制（Decimal）、十六进制（Hexadecimal）  二进制： 4&#39;b0101 表示4位二进制数字0101 十进制： 4&#39;d2 表示4位十进制数字2 十六进制： 4&#39;ha">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Verilog语法-1">
+<meta property="og:url" content="https://skina.cn/Verilog_1/index.html">
+<meta property="og:site_name" content="GBY&#39;s Blog">
+<meta property="og:description" content="Verilog语法# 逻辑值#  逻辑0：低电平（GND） 逻辑1：高电平（VCC） 逻辑X：电平未知 逻辑Z：高阻态，悬空状态  数据进制格式# 二进制（binary）、八进制（Octal）、十进制（Decimal）、十六进制（Hexadecimal）  二进制： 4&#39;b0101 表示4位二进制数字0101 十进制： 4&#39;d2 表示4位十进制数字2 十六进制： 4&#39;ha">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.chipverify.com/images/verilog/verilog_keywords_2.png">
+<meta property="og:image" content="c:\Users\GBY\AppData\Roaming\Typora\typora-user-images\image-20250708231819501.png">
+<meta property="article:published_time" content="2025-07-08T15:53:00.000Z">
+<meta property="article:modified_time" content="2025-08-07T05:12:30.088Z">
+<meta property="article:author" content="GBYYY.">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="verilog">
+<meta property="article:tag" content="FPGA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.chipverify.com/images/verilog/verilog_keywords_2.png">
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+  <style>
+    :root {
+      --sea-color-primary: #10b981;
+    }
+  </style>
+
+  
+<script src="/js/theme_mode.js"></script>
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+  <header class="sea-header">
+    <nav class="sea-nav-wrap">
+  <h1 class="sea-nav-logo" title="">
+    <a href="/">GBY's Blog</a>
+  </h1>
+  <div class="sea-nav-menus">
+    <div id="sea-nav-toggle">
+      <svg t="1716965724278" class="sea-svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="10878" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M950.857143 768v73.142857c0 20.004571-16.566857 36.571429-36.571429 36.571429H109.714286c-20.004571 0-36.571429-16.566857-36.571429-36.571429v-73.142857c0-20.004571 16.566857-36.571429 36.571429-36.571429h804.571428c20.004571 0 36.571429 16.566857 36.571429 36.571429z m0-292.571429v73.142858c0 20.004571-16.566857 36.571429-36.571429 36.571428H109.714286c-20.004571 0-36.571429-16.566857-36.571429-36.571428v-73.142858c0-20.004571 16.566857-36.571429 36.571429-36.571428h804.571428c20.004571 0 36.571429 16.566857 36.571429 36.571428z m0-292.571428v73.142857c0 20.004571-16.566857 36.571429-36.571429 36.571429H109.714286c-20.004571 0-36.571429-16.566857-36.571429-36.571429V182.857143c0-20.004571 16.566857-36.571429 36.571429-36.571429h804.571428c20.004571 0 36.571429 16.566857 36.571429 36.571429z" p-id="10879"></path></svg>
+    </div>
+
+    <div class="sea-menu-wrap">
+  
+    <a
+      class="sea-menu-link"
+      
+      href="/"
+    >
+      Home
+    </a>
+  
+    <a
+      class="sea-menu-link"
+      
+      href="/links"
+    >
+      Links
+    </a>
+  
+    <a
+      class="sea-menu-link"
+      
+      href="/archives/"
+    >
+      Archives
+    </a>
+  
+    <a
+      class="sea-menu-link"
+      
+      href="/tags/"
+    >
+      Tags
+    </a>
+  
+    <a
+      class="sea-menu-link"
+      
+      href="/about"
+    >
+      About
+    </a>
+  
+
+  <span class="sea-menu-sep">|</span>
+
+  
+
+  <span class="sea-menu-icon" id="sea-theme-dark">
+    <svg t="1725413107294" class="sea-svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="10118" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M557.553778 976.355556c-257.265778 0-466.56-207.160889-466.56-464.426667 0-253.923556 206.577778-464.284444 460.501333-464.284445h0.355556c10.766222 0 20.622222 3.953778 25.443555 13.610667 4.878222 9.756444 3.740444 20.394667-2.915555 29.027556-55.722667 72.220444-85.162667 158.108444-85.162667 249.372444 0 225.891556 183.779556 409.386667 409.671111 409.386667l5.248-0.256c10.325333-0.142222 20.977778 5.859556 25.841778 15.644444a28.302222 28.302222 0 0 1-2.915556 30.051556C837.902222 910.08 703.203556 976.355556 557.553778 976.355556zM495.274667 105.016889C299.192889 135.281778 147.882667 306.161778 147.882667 509.809778c0 225.877333 183.779556 409.656889 409.671111 409.656889 108.686222 0 210.403556-42.055111 286.577778-116.977778-231.566222-27.192889-411.804444-224.625778-411.804445-463.36 0-83.427556 21.617778-163.299556 62.947556-234.112z" fill="" p-id="10119"></path><path d="M578.830222 879.132444c-186.865778 0-345.784889-133.418667-377.841778-317.269333a14.222222 14.222222 0 1 1 28.017778-4.878222c29.681778 170.183111 176.810667 293.703111 349.824 293.703111a14.222222 14.222222 0 1 1 0 28.444444zM209.991111 531.2c-7.537778 0-13.838222-6.997333-14.193778-14.606222-0.312889-6.584889-0.483556-13.795556-0.483555-20.465778 0-7.864889 6.357333-14.492444 14.222222-14.492444s14.222222 6.229333 14.222222 14.094222c0 6.229333 0.170667 13.425778 0.455111 19.584 0.369778 7.850667-5.674667 15.886222-13.525333 15.886222h-0.696889z" fill="" p-id="10120"></path><path d="M622.350222 309.930667m-25.344 0a25.344 25.344 0 1 0 50.688 0 25.344 25.344 0 1 0-50.688 0Z" fill="" p-id="10121"></path><path d="M787.072 188.273778m-25.344 0a25.344 25.344 0 1 0 50.688 0 25.344 25.344 0 1 0-50.688 0Z" fill="" p-id="10122"></path><path d="M731.960889 415.303111m-25.344 0a25.344 25.344 0 1 0 50.688 0 25.344 25.344 0 1 0-50.688 0Z" p-id="10123"></path></svg>
+  </span>
+  <span class="sea-menu-icon" id="sea-theme-light">
+    <svg t="1725410359322" class="sea-svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4274" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M512 768c-141.376 0-256-114.624-256-256s114.624-256 256-256 256 114.624 256 256-114.624 256-256 256z m0-85.333333a170.666667 170.666667 0 1 0 0-341.333334 170.666667 170.666667 0 0 0 0 341.333334zM469.333333 85.333333a42.666667 42.666667 0 1 1 85.333334 0v85.333334a42.666667 42.666667 0 1 1-85.333334 0V85.333333z m0 768a42.666667 42.666667 0 1 1 85.333334 0v85.333334a42.666667 42.666667 0 1 1-85.333334 0v-85.333334zM85.333333 554.666667a42.666667 42.666667 0 1 1 0-85.333334h85.333334a42.666667 42.666667 0 1 1 0 85.333334H85.333333z m768 0a42.666667 42.666667 0 1 1 0-85.333334h85.333334a42.666667 42.666667 0 1 1 0 85.333334h-85.333334zM161.834667 222.165333a42.666667 42.666667 0 0 1 60.330666-60.330666l64 64a42.666667 42.666667 0 0 1-60.330666 60.330666l-64-64z m576 576a42.666667 42.666667 0 0 1 60.330666-60.330666l64 64a42.666667 42.666667 0 0 1-60.330666 60.330666l-64-64z m-515.669334 64a42.666667 42.666667 0 0 1-60.330666-60.330666l64-64a42.666667 42.666667 0 0 1 60.330666 60.330666l-64 64z m576-576a42.666667 42.666667 0 0 1-60.330666-60.330666l64-64a42.666667 42.666667 0 0 1 60.330666 60.330666l-64 64z" p-id="4275"></path></svg>
+  </span>
+
+  <span id="sea-menu-close-icon">
+    <svg t="1725435896874" class="sea-svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4408" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M556.8 512l265.6-265.6c12.8-12.8 12.8-32 0-44.8s-32-12.8-44.8 0L512 467.2 246.4 201.6c-12.8-12.8-32-12.8-44.8 0s-12.8 32 0 44.8l265.6 265.6-265.6 265.6c-12.8 12.8-12.8 32 0 44.8 6.4 6.4 12.8 9.6 22.4 9.6s16-3.2 22.4-9.6l265.6-265.6 265.6 265.6c6.4 6.4 16 9.6 22.4 9.6s16-3.2 22.4-9.6c12.8-12.8 12.8-32 0-44.8L556.8 512z" p-id="4409"></path></svg>
+  </span>
+</div>
+<div id="sea-nav-dimmer"></div>
+  </div>
+</nav>
+  </header>
+  <main id="sea-main-wrapper">
+    <article class="sea-page-card-wrapper">
+  <header class="sea-article-header">
+    <h1 class="sea-article-title">Verilog语法-1</h1>
+    
+      <div class="sea-post-meta sea-post-meta__center">
+        <div class="sea-post-time">
+  <svg t="1716964550804" class="sea-svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2621" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M805.49888 981.49888l-602.3168-0.76288c-86.59456-8.192-154.56768-81.3056-154.56768-170.01472L48.6144 291.73248c0-94.1568 76.60032-170.75712 170.7776-170.75712l586.10176 0c94.1568 0 170.73152 76.60032 170.73152 170.75712L976.22528 810.7008C976.2304 904.87296 899.63008 981.49888 805.49888 981.49888L805.49888 981.49888zM219.3664 190.57152c-55.79776 0-101.20192 45.38368-101.20192 101.18144l0 518.96832c0 55.79776 45.40416 101.20704 101.20192 101.20704l586.13248 0c55.77728 0 101.16096-45.40928 101.16096-101.20704L906.65984 291.73248c0-55.79776-45.38368-101.18656-101.16096-101.18656L219.3664 190.54592 219.3664 190.57152zM698.84416 290.51904c-25.60512 0-46.38208-20.77696-46.38208-46.38208l0-158.6688c0-25.6 20.77696-46.38208 46.38208-46.38208 25.6 0 46.38208 20.78208 46.38208 46.38208L745.22624 244.1216C745.22624 269.7472 724.46976 290.51904 698.84416 290.51904L698.84416 290.51904zM315.65824 290.51904c-25.60512 0-46.38208-20.77696-46.38208-46.38208l0-158.6688c0-25.6 20.77696-46.38208 46.38208-46.38208 25.6 0 46.38208 20.78208 46.38208 46.38208L362.04032 244.1216C362.04032 269.7472 341.28896 290.51904 315.65824 290.51904L315.65824 290.51904zM534.8864 794.78784l-44.27264 0c-25.6 0-46.38208-20.77696-46.38208-46.38208 0-25.6 20.78208-46.38208 46.38208-46.38208l44.27264 0c25.6 0 46.38208 20.78208 46.38208 46.38208C581.26848 774.01088 560.4864 794.78784 534.8864 794.78784L534.8864 794.78784zM930.79552 452.608 121.24672 452.608c-25.60512 0-46.38208-20.78208-46.38208-46.38208 0-25.60512 20.77696-46.38208 46.38208-46.38208l809.5744 0c25.6 0 46.38208 20.77696 46.38208 46.38208C977.2032 431.82592 956.42624 452.608 930.79552 452.608L930.79552 452.608zM327.92576 649.03168l-44.27264 0c-25.6 0-46.38208-20.78208-46.38208-46.38208 0-25.60512 20.78208-46.38208 46.38208-46.38208l44.27264 0c25.6 0 46.38208 20.77696 46.38208 46.38208C374.30784 628.25472 353.52576 649.03168 327.92576 649.03168L327.92576 649.03168zM534.8864 649.03168l-44.27264 0c-25.6 0-46.38208-20.78208-46.38208-46.38208 0-25.60512 20.78208-46.38208 46.38208-46.38208l44.27264 0c25.6 0 46.38208 20.77696 46.38208 46.38208S560.4864 649.03168 534.8864 649.03168L534.8864 649.03168zM741.27872 649.03168l-44.26752 0c-25.60512 0-46.38208-20.78208-46.38208-46.38208 0-25.60512 20.77696-46.38208 46.38208-46.38208l44.26752 0c25.60512 0 46.38208 20.77696 46.38208 46.38208C787.6608 628.25472 766.90944 649.03168 741.27872 649.03168L741.27872 649.03168zM327.92576 794.78784l-44.27264 0c-25.6 0-46.38208-20.77696-46.38208-46.38208 0-25.6 20.78208-46.38208 46.38208-46.38208l44.27264 0c25.6 0 46.38208 20.78208 46.38208 46.38208C374.30784 774.01088 353.52576 794.78784 327.92576 794.78784L327.92576 794.78784zM741.27872 794.78784l-44.26752 0c-25.60512 0-46.38208-20.77696-46.38208-46.38208 0-25.6 20.77696-46.38208 46.38208-46.38208l44.26752 0c25.60512 0 46.38208 20.78208 46.38208 46.38208C787.6608 774.01088 766.90944 794.78784 741.27872 794.78784L741.27872 794.78784z" p-id="2622"></path></svg>
+  <time datetime="2025-07-08T15:53:00.000Z">2025-07-08</time>
+</div>
+        
+        
+  <div class="sea-post-tags">
+    <svg t="1716964811431" class="sea-svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6117" xmlns:xlink="http://www.w3.org/1999/xlink" width="200" height="200"><path d="M384 977.152c-20.5312 0-39.8336-7.9872-54.3232-22.4256l-260.4032-260.4032c-14.4896-14.4896-22.4256-33.7408-22.4256-54.3232s7.9872-39.8336 22.4256-54.3232l439.6032-439.6032c24.9344-24.9344 70.2464-43.7248 105.5232-43.7248h230.4c42.3424 0 76.8 34.4576 76.8 76.8v230.4c0 35.2256-18.7904 80.5888-43.6736 105.5232l-439.6032 439.6032a76.1856 76.1856 0 0 1-54.3232 22.4256zM614.4 153.6c-21.248 0-54.272 13.6704-69.2736 28.7232l-439.6032 439.6032c-4.8128 4.8128-7.424 11.2128-7.424 18.1248s2.6624 13.312 7.424 18.0736l260.4032 260.4032c4.8128 4.8128 11.2128 7.424 18.1248 7.424s13.312-2.6624 18.1248-7.424l439.6032-439.6032c15.0016-15.0016 28.7232-48.0768 28.7232-69.3248V179.2a25.6 25.6 0 0 0-25.6-25.6h-230.4z" p-id="6118"></path><path d="M742.4 358.4c-42.3424 0-76.8-34.4576-76.8-76.8S700.0576 204.8 742.4 204.8s76.8 34.4576 76.8 76.8S784.7424 358.4 742.4 358.4z m0-102.4a25.6 25.6 0 1 0 0 51.2 25.6 25.6 0 0 0 0-51.2z" p-id="6119"></path></svg>
+    <a class="tag-link" href="/tags/FPGA/" rel="tag">FPGA</a> , <a class="tag-link" href="/tags/verilog/" rel="tag">verilog</a> , <a class="tag-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a>
+  </div>
+
+      </div>
+    
+  </header>
+  <div class="sea-article-content sea-doc">
+    <h1><span id="verilog-yu-fa">Verilog语法</span><a href="#verilog-yu-fa" class="header-anchor">#</a></h1>
+<h2><span id="luo-ji-zhi">逻辑值</span><a href="#luo-ji-zhi" class="header-anchor">#</a></h2>
+<ul>
+<li>逻辑0：低电平（GND）</li>
+<li>逻辑1：高电平（VCC）</li>
+<li>逻辑X：电平未知</li>
+<li>逻辑Z：高阻态，悬空状态</li>
+</ul>
+<h2><span id="shu-ju-jin-zhi-ge-shi">数据进制格式</span><a href="#shu-ju-jin-zhi-ge-shi" class="header-anchor">#</a></h2>
+<p>二进制（binary）、八进制（Octal）、十进制（Decimal）、十六进制（Hexadecimal）</p>
+<ul>
+<li>二进制： <code>4'b0101</code> 表示4位二进制数字0101</li>
+<li>十进制： <code>4'd2</code> 表示4位十进制数字2</li>
+<li>十六进制： <code>4'ha</code> 表示4位十六进制数字a</li>
+</ul>
+<p>可以发现，Verilog对数字的定义为 <code>大小</code>[size] +
+<code>'</code> + <code>进制[base_format]</code> +
+<code>数值[number]</code> 。</p>
+<p>数值的每四位建议下划线（ <code>_</code>
+）分割，以增加程序的可读性。</p>
+<p>例如： <code>16'b1001_1010_1010_1001=16'h9AA9</code></p>
+<p>对于未指定 <code>进制[base_format]</code>
+的数值，默认为十进制数；对于未指定 <code>大小[size]</code>
+的数字，采用默认位数（取决于设备类型）</p>
+<p>对于负数，符号应当放置在 <code>大小[size]</code>
+前，而不应放在其他位置</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-<span class="number">4&#x27;d2</span>	<span class="comment">//correct</span></span><br><span class="line"><span class="number">4</span>&#x27;d-<span class="number">2</span>	<span class="comment">//illegal</span></span><br></pre></td></tr></table></figure>
+<h2><span id="zi-fu-chuan">字符串</span><a href="#zi-fu-chuan" class="header-anchor">#</a></h2>
+<p>不可分行书写，用 <code>" "</code> 包含。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;Hello World!&quot;</span>        <span class="comment">// string with 12 characters -&gt; require 12 bytes</span></span><br><span class="line"><span class="string">&quot;x + z&quot;</span>               <span class="comment">// string with 5 characters</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;How are you</span></span><br><span class="line"><span class="string">feeling today ?&quot;</span>      <span class="comment">// illegal for a string to be split into multiple lines</span></span><br></pre></td></tr></table></figure>
+<h2><span id="biao-shi-fu">标识符</span><a href="#biao-shi-fu" class="header-anchor">#</a></h2>
+<p>用于定义模块名、端口名、信号名等。</p>
+<p>可是 <strong>字母</strong> 、 <strong>数字</strong> 、
+<strong>$</strong> 和 <strong>下划线</strong> 的组合。</p>
+<p>注意：与C语言相同，标识符的第一个字母必须是 <strong>字母</strong> 或
+<strong>下划线</strong> ，且对大小写敏感。</p>
+<h2><span id="guan-jian-zi">关键字</span><a href="#guan-jian-zi" class="header-anchor">#</a></h2>
+<p>语言保留关键字，不可用做标识符名称。</p>
+<figure>
+<img src="https://www.chipverify.com/images/verilog/verilog_keywords_2.png" alt="Verilog关键字">
+<figcaption aria-hidden="true">Verilog关键字</figcaption>
+</figure>
+<h2><span id="shu-ju-lei-xing">数据类型</span><a href="#shu-ju-lei-xing" class="header-anchor">#</a></h2>
+<h3><span id="ji-cun-qi-lei-xing-reg">寄存器类型 <code>reg</code></span><a href="#ji-cun-qi-lei-xing-reg" class="header-anchor">#</a></h3>
+<p>用来表示存储单元</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">reg</span> [<span class="number">25</span>:<span class="number">0</span>] cnt;	<span class="comment">//size为26位</span></span><br><span class="line"><span class="keyword">reg</span> clk;	<span class="comment">//size为1位</span></span><br></pre></td></tr></table></figure>
+<p><code>reg</code> 类型不可直接赋初值，只能在 <code>always</code> 和
+<code>initial</code> 语句中赋值。</p>
+<ul>
+<li><code>[bit+: width]</code> : 从起始 bit 位开始递增，位宽为
+width。</li>
+<li><code>[bit-: width]</code> : 从起始 bit 位开始递减，位宽为
+width。</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//下面 2 种赋值是等效的</span></span><br><span class="line">A = data1[<span class="number">31</span>-: <span class="number">8</span>] ;</span><br><span class="line">A = data1[<span class="number">31</span>:<span class="number">24</span>] ;</span><br><span class="line"></span><br><span class="line"><span class="comment">//下面 2 种赋值是等效的</span></span><br><span class="line">B = data1[<span class="number">0</span>+ : <span class="number">8</span>] ;</span><br><span class="line">B = data1[<span class="number">0</span>:<span class="number">7</span>] ;</span><br></pre></td></tr></table></figure>
+<h3><span id="xian-wang-lei-xing-wire">线网类型 <code>wire</code></span><a href="#xian-wang-lei-xing-wire" class="header-anchor">#</a></h3>
+<p>用于表示硬件单元间的物理连线，缺省值为 <code>Z</code> 。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">wire</span>   interrupt ;</span><br><span class="line"><span class="keyword">wire</span>   flag1, flag2 ;</span><br><span class="line"><span class="keyword">wire</span>   gnd = <span class="number">1&#x27;b0</span> ; </span><br></pre></td></tr></table></figure>
+<h3><span id="shu-zu">数组：</span><a href="#shu-zu" class="header-anchor">#</a></h3>
+<p>在 Verilog 中允许声明 reg, wire, integer, time, real
+及其向量类型的数组。维数不限。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">integer</span>          flag [<span class="number">7</span>:<span class="number">0</span>] ; <span class="comment">//8个整数组成的数组</span></span><br><span class="line"><span class="keyword">reg</span>  [<span class="number">3</span>:<span class="number">0</span>]       counter [<span class="number">3</span>:<span class="number">0</span>] ; <span class="comment">//由4个4bit计数器组成的数组</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">7</span>:<span class="number">0</span>]       addr_bus [<span class="number">3</span>:<span class="number">0</span>] ; <span class="comment">//由4个8bit wire型变量组成的数组</span></span><br><span class="line"><span class="keyword">wire</span>             data_bit[<span class="number">7</span>:<span class="number">0</span>][<span class="number">5</span>:<span class="number">0</span>] ; <span class="comment">//声明1bit wire型变量的二维数组</span></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">31</span>:<span class="number">0</span>]       data_4d[<span class="number">11</span>:<span class="number">0</span>][<span class="number">3</span>:<span class="number">0</span>][<span class="number">3</span>:<span class="number">0</span>][<span class="number">255</span>:<span class="number">0</span>] ; <span class="comment">//声明4维的32bit数据变量数组</span></span><br><span class="line"></span><br><span class="line">flag [<span class="number">1</span>]   = <span class="number">32&#x27;d0</span> ; <span class="comment">//将flag数组中第二个元素赋值为32bit的0值</span></span><br><span class="line">counter[<span class="number">3</span>] = <span class="number">4&#x27;hF</span> ;  <span class="comment">//将数组counter中第4个元素的值赋值为4bit 十六进制数F，等效于counter[3][3:0] = 4&#x27;hF，即可省略宽度;</span></span><br><span class="line"><span class="keyword">assign</span> addr_bus[<span class="number">0</span>]        = <span class="number">8&#x27;b0</span> ; <span class="comment">//将数组addr_bus中第一个元素的值赋值为0</span></span><br><span class="line"><span class="keyword">assign</span> data_bit[<span class="number">0</span>][<span class="number">1</span>]     = <span class="number">1&#x27;b1</span>;  <span class="comment">//将数组data_bit的第1行第2列的元素赋值为1，这里不能省略第二个访问标号，即 assign data_bit[0] = 1&#x27;b1; 是非法的。</span></span><br><span class="line">data_4d[<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>][<span class="number">0</span>][<span class="number">15</span>:<span class="number">0</span>] = <span class="number">15&#x27;d3</span> ;  <span class="comment">//将数组data_4d中标号为[0][0][0][0]的寄存器单元的15~0bit赋值为3</span></span><br></pre></td></tr></table></figure>
+<h3><span id="zi-fu-chuan">字符串</span><a href="#zi-fu-chuan" class="header-anchor">#</a></h3>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">reg</span> [<span class="number">0</span>: <span class="number">14</span>*<span class="number">8</span>-<span class="number">1</span>]       str ;</span><br><span class="line"><span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">    str = <span class="string">&quot;Hello Verilog!&quot;</span>;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3><span id="can-shu">参数</span><a href="#can-shu" class="header-anchor">#</a></h3>
+<p>用 <code>parameter</code> 声明，只能赋值一次。局部参数用
+<code>localparam</code> 声明。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">parameter</span>      data_width = <span class="number">10&#x27;d32</span> ;</span><br><span class="line"><span class="keyword">parameter</span>      i=<span class="number">1</span>, j=<span class="number">2</span>, k=<span class="number">3</span> ;</span><br><span class="line"><span class="keyword">parameter</span>      mem_size = data_width * <span class="number">10</span> ;</span><br></pre></td></tr></table></figure>
+<h3><span id="qi-ta-lei-xing">其他类型</span><a href="#qi-ta-lei-xing" class="header-anchor">#</a></h3>
+<p><code>integer</code> 、 <code>real</code> 、 <code>time</code> and so
+on 此处略去。</p>
+<h2><span id="biao-da-shi-yu-yun-suan-fu">表达式与运算符</span><a href="#biao-da-shi-yu-yun-suan-fu" class="header-anchor">#</a></h2>
+<p>运算优先级与C语言相同</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">real</span> a,b,c;</span><br><span class="line">c=a+b;</span><br><span class="line"></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">3</span>:<span class="number">0</span>] m,n;</span><br><span class="line"><span class="keyword">wire</span> [<span class="number">3</span>:<span class="number">0</span>] tmp;</span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">    n=m^n;</span><br><span class="line">    <span class="comment">//tmp=m-n; //非法操作，always块里赋值对象不能是wire型</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>算术运算符：即加（ <code>+</code> ）、减（ <code>-</code>
+）、乘（ <code>*</code> ）、除（ <code>/</code> ）、求幂（
+<code>**</code> ）、取模（ <code>%</code> ），注意定义的数据位宽。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">reg</span> [<span class="number">3</span>:<span class="number">0</span>] a,b;</span><br><span class="line"><span class="keyword">reg</span> [<span class="number">4</span>:<span class="number">0</span>] c,d,e;</span><br><span class="line">a=<span class="number">4&#x27;b0010</span>;<span class="comment">//a=2</span></span><br><span class="line">b=<span class="number">4&#x27;b1001</span>;<span class="comment">//b=9</span></span><br><span class="line">c=a+b;<span class="comment">//result:c=4&#x27;b1011 即c=11</span></span><br><span class="line">c=b/a;<span class="comment">//result:c=4 取整</span></span><br></pre></td></tr></table></figure>
+<p>若操作数某一位为 <code>x</code> ，Verilog 会认为
+“输入有不确定信号”，结果也会被标记为 <code>x</code>。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//example</span></span><br><span class="line">a=<span class="number">4&#x27;b1010</span>;</span><br><span class="line">b=<span class="number">4&#x27;bx001</span>;</span><br><span class="line">c=a+b;<span class="comment">//result:c=4&#x27;bx011</span></span><br><span class="line"><span class="comment">//不只是加法，其他运算也有同样的结果</span></span><br><span class="line">c = a &amp; b;  <span class="comment">// 结果 c=4&#x27;bx000（因为 b[3] 是 X，与运算后这一位也 X）</span></span><br><span class="line">d = a | b;  <span class="comment">// 结果 d=4&#x27;bx011（b[3] 是 X，或运算后这一位也 X）</span></span><br><span class="line">e = ~b;     <span class="comment">// 结果 e=4&#x27;bx110（b[3] 是 X，取反后还是 X）</span></span><br></pre></td></tr></table></figure>
+<p>表示负数时，应当指定位宽 <code>size</code>
+（因为负数用的二进制补码表示），否则会出现意想不到的后果。</p></li>
+<li><p>关系运算符：大于（ <code>&gt;</code> ）、小于（ <code>&lt;</code>
+）、大于等于（ <code>&gt;=</code> ）、小于等于（ <code>&lt;=</code>
+）。</p>
+<p>基本规则与C语言相同。真为 <code>1</code> ，假为 <code>0</code> 。</p>
+<p>值得注意的是，若操作数有一位为 <code>x</code> or <code>z</code>
+则返回结果为 <code>x</code> 。</p></li>
+<li><p>等价运算符：逻辑相等（ <code>==</code> ）、逻辑不等（
+<code>!=</code> ）、全等（ <code>===</code> ）、非全等（
+<code>!==</code> ）。</p>
+<p>基本规则与C语言相同。真为1，假为0。</p>
+<p>值得注意的是，执行逻辑比较时，若操作数有一位为 <code>x</code> or
+<code>z</code> 则返回结果为 <code>x</code>
+；执行全等比较时，若两数同时在同一位有 <code>x</code> or <code>z</code>
+，结果也能返回 <code>1</code> 。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">A = <span class="number">4</span> ;</span><br><span class="line">B = <span class="number">8&#x27;h04</span> ;</span><br><span class="line">C = <span class="number">4&#x27;bxxxx</span> ;</span><br><span class="line">D = <span class="number">4&#x27;hx</span> ;</span><br><span class="line">A == B        <span class="comment">//为真</span></span><br><span class="line">A == (B + <span class="number">1</span>)  <span class="comment">//为假</span></span><br><span class="line">A == C        <span class="comment">//为X，不确定</span></span><br><span class="line">A === C       <span class="comment">//为假，返回值为0</span></span><br><span class="line">C === D       <span class="comment">//为真，返回值为1</span></span><br></pre></td></tr></table></figure></li>
+<li><p>逻辑运算符：逻辑与（ <code>&amp;&amp;</code> ）、逻辑或（
+<code>||</code> ）、逻辑非（ <code>!</code> ）</p>
+<p>基本规则与C语言相同。操作数不为0，等价于 <code>1</code>
+；操作数为0，等价于 <code>0</code> ；操作数为 <code>x</code> or
+<code>z</code> ，等价于 <code>x</code> 。</p>
+<p>值得注意的是，如果任意一个操作数包含 <code>x</code>
+，逻辑操作符运算结果不一定为 <code>x</code> 。</p></li>
+<li><p>位运算符：取反（ <code>~</code> ）、与（ <code>&amp;</code>
+）、或（ <code>|</code> ）、异或（ <code>^</code> ）、同或（
+<code>~^</code> ）。</p>
+<p>具体规则详见我的另一篇文章：https://skina.cn/bit_operation/</p>
+<p>这里简单补充同或规则：两个输入值相同时，结果为真。该运算的结果与异或相反，故满足如下条件
+<code>A~^B == ~(A^B)</code></p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">A = <span class="number">4&#x27;b1010</span> ;</span><br><span class="line">B = <span class="number">4&#x27;b0110</span> ;</span><br><span class="line">C = <span class="number">4&#x27;bx101</span> ;</span><br><span class="line"></span><br><span class="line">~A        <span class="comment">// 4&#x27;b0101</span></span><br><span class="line">A &amp; B     <span class="comment">// 4&#x27;b0010</span></span><br><span class="line">A | B     <span class="comment">// 4&#x27;b1110</span></span><br><span class="line">A^B       <span class="comment">// 4&#x27;b1100</span></span><br><span class="line">A ~^ B    <span class="comment">// 4&#x27;b0011</span></span><br><span class="line">B | C     <span class="comment">// 4&#x27;bx111</span></span><br><span class="line">B &amp; C       <span class="comment">// 4&#x27;bx100</span></span><br></pre></td></tr></table></figure></li>
+<li><p>移位运算符：左移（ <code>&lt;&lt;</code> ）、右移（
+<code>&gt;&gt;</code> ）、算术左移（ <code>&lt;&lt;&lt;</code>
+）、算数右移（ <code>&gt;&gt;&gt;</code> ）。</p>
+<p>具体规则详见我的另一篇文章：https://skina.cn/bit_operation/</p>
+<p>这里补充算数左移和算术右移的规则。</p>
+<p>算术左移：将操作数的二进制位向左移动指定的位数，低位补 <code>0</code>
+，高位丢弃。</p>
+<p>算术右移：将操作数的二进制位向右移动指定的位数，对于有符号数，高位用符号位填充，低位丢弃。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 无符号数，用于逻辑移位、算术左移（无符号数算术左移和逻辑左移行为一致）</span></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">7</span>:<span class="number">0</span>] unsigned_num = <span class="number">8&#x27;b1010_1100</span>; <span class="comment">// 十进制 172，二进制 10101100</span></span><br><span class="line"><span class="comment">// 有符号数，用于算术右移对比</span></span><br><span class="line"><span class="keyword">reg</span> <span class="keyword">signed</span> [<span class="number">7</span>:<span class="number">0</span>] signed_num = <span class="number">8&#x27;b1101_0011</span>; <span class="comment">// 十进制 -45（补码），二进制11010011</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">// 移位结果存储</span></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">7</span>:<span class="number">0</span>] arith_left_res;</span><br><span class="line"><span class="keyword">reg</span> [<span class="number">7</span>:<span class="number">0</span>] arith_right_res;</span><br><span class="line"><span class="keyword">reg</span> [<span class="number">7</span>:<span class="number">0</span>] logic_left_res;</span><br><span class="line"><span class="keyword">reg</span> [<span class="number">7</span>:<span class="number">0</span>] logic_right_res;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">arith_left_res = unsigned_num &lt;&lt; <span class="number">1</span>;<span class="comment">//算术左移（&lt;&lt;）：无符号数左移，低位补 0，相当于 ×2（不溢出时）</span></span><br><span class="line">arith_right_res = signed_num &gt;&gt; <span class="number">1</span>;<span class="comment">//算术右移（&gt;&gt;）：有符号数右移，高位补符号位（这里最高位是 1，补 1）</span></span><br><span class="line">logic_left_res = unsigned_num &lt;&lt;&lt; <span class="number">1</span>;<span class="comment">//逻辑左移（&lt;&lt;&lt;）：和算术左移对无符号数效果一样，低位补 0</span></span><br><span class="line">logic_right_res = signed_num &gt;&gt;&gt; <span class="number">1</span>;<span class="comment">//逻辑右移（&gt;&gt;&gt;）：不管符号，高位补 0</span></span><br></pre></td></tr></table></figure>
+<p>归约运算符：将一个多位宽的向量逐位进行逻辑运算，最终得到一个 1
+位的结果。有
+<code>&amp;</code>（与）、<code>|</code>（或）、<code>^</code>（异或）、<code>~&amp;</code>（与非）、<code>~|</code>（或非）、<code>~^</code>（同或）等运算符。语法为：
+<code>规约运算符</code> + <code>表达式</code>。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">reg</span> [<span class="number">3</span>:<span class="number">0</span>] a = <span class="number">4&#x27;b1011</span>;</span><br><span class="line"><span class="keyword">wire</span> and_result = &amp;a;    <span class="comment">// 逐位与：1&amp;0&amp;1&amp;1 = 0</span></span><br><span class="line"><span class="keyword">wire</span> or_result = |a;     <span class="comment">// 逐位或：1|0|1|1 = 1</span></span><br><span class="line"><span class="keyword">wire</span> xor_result = ^a;    <span class="comment">// 逐位异或：1^0^1^1 = 1</span></span><br></pre></td></tr></table></figure>
+<p>常用于判断向量是否全为 1（<code>&amp;a</code>）或全为
+0（<code>~|a</code>）。</p></li>
+<li><p>拼接运算符：将多个信号或常量按位拼接成一个新的向量。语法为：
+<code>&#123;信号1, 信号2, ...&#125;</code></p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">reg</span> [<span class="number">3</span>:<span class="number">0</span>] a = <span class="number">4&#x27;b1010</span>;</span><br><span class="line"><span class="keyword">reg</span> [<span class="number">1</span>:<span class="number">0</span>] b = <span class="number">2&#x27;b11</span>;</span><br><span class="line"><span class="keyword">wire</span> [<span class="number">5</span>:<span class="number">0</span>] c = &#123;a, b&#125;;   <span class="comment">// 拼接结果：6&#x27;b101011</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">7</span>:<span class="number">0</span>] d = &#123;<span class="number">2&#x27;b00</span>, a, <span class="number">1&#x27;b1</span>&#125;;  <span class="comment">// 拼接常量和变量：8&#x27;b00101001</span></span><br></pre></td></tr></table></figure>
+<p>值得注意的是，拼接时需明确指定每部分的位宽，该语法常用于构建更大的向量（如地址、数据总线等）</p></li>
+<li><p>三目运算符：与C语言相同，不再赘述。</p></li>
+</ul>
+<h2><span id="bian-yi-zhi-ling">编译指令</span><a href="#bian-yi-zhi-ling" class="header-anchor">#</a></h2>
+<h3><span id="define-he-undef"><code>`define</code> 和
+<code>`undef</code></span><a href="#define-he-undef" class="header-anchor">#</a></h3>
+<p>类似C语言中的 <code>#define</code> 和 <code>undef</code></p>
+<p>与之配套的有<code>`ifdef</code>、<code>`ifndef</code>、<code>`else</code>
+和 <code>`endif</code></p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="keyword">define</span> 宏名 [值]</span></span><br><span class="line"><span class="meta">`<span class="keyword">undef</span> 宏名</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//example</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> WIDTH 8        </span><span class="comment">// 定义常量宏</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> DEBUG          </span><span class="comment">// 定义开关宏</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">reg</span> [`WIDTH-<span class="number">1</span>:<span class="number">0</span>] data;  <span class="comment">// 使用宏定义位宽</span></span><br><span class="line"></span><br><span class="line"><span class="meta">`<span class="keyword">ifdef</span> DEBUG</span></span><br><span class="line">    <span class="keyword">initial</span> <span class="built_in">$display</span>(<span class="string">&quot;Debug mode enabled&quot;</span>);</span><br><span class="line"><span class="meta">`<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">`<span class="keyword">undef</span> DEBUG           </span><span class="comment">// 取消宏定义</span></span><br></pre></td></tr></table></figure>
+<p>宏可以是常量、文本片段或表达式，且宏在定义后全局有效，直到被<code>undef</code>或文件结束。</p>
+<h3><span id="include"><code>`include</code></span><a href="#include" class="header-anchor">#</a></h3>
+<p>将另一个文件的内容插入到当前位置（类似 C
+语言的<code>#include</code>）。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="keyword">include</span> &quot;defines.v&quot;  </span><span class="comment">// 包含自定义定义文件</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> top;</span><br><span class="line">    <span class="comment">// 使用defines.v中定义的内容</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<h3><span id="timescale"><code>`timescale</code></span><a href="#timescale" class="header-anchor">#</a></h3>
+<p>指定模块的时间单位和精度。</p>
+<ul>
+<li>时间单位和精度必须是 1、10 或
+100，后跟<code>fs</code>、<code>ps</code>、<code>ns</code>、<code>us</code>、<code>ms</code>、<code>s</code>。</li>
+<li>影响时间相关函数。</li>
+</ul>
+<p>语法规则为： <code>`timescale 时间单位/时间精度</code></p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="keyword">timescale</span> 1ns / 1ps  </span><span class="comment">// 时间单位为1纳秒，精度为1皮秒</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> delay_example;</span><br><span class="line">    <span class="keyword">reg</span> clk;</span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        clk = <span class="number">0</span>;</span><br><span class="line">        #<span class="number">5</span> clk = <span class="number">1</span>;  <span class="comment">// 延时5ns</span></span><br><span class="line">        #<span class="number">5</span> clk = <span class="number">0</span>;  <span class="comment">// 再延时5ns</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<h3><span id="default-nettype"><code>`default_nettype</code></span><a href="#default-nettype" class="header-anchor">#</a></h3>
+<p>用于指定未声明的标识符的默认网络类型。</p>
+<p>语法规则为：<code>`default_nettype 网络类型</code></p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="keyword">default_nettype</span> wire  </span><span class="comment">// 默认网络类型为wire</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> test;</span><br><span class="line">    <span class="keyword">reg</span> clk;</span><br><span class="line">    signal a;  <span class="comment">// 未声明，默认被视为wire类型</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br><span class="line"></span><br><span class="line"><span class="meta">`<span class="keyword">default_nettype</span> none  </span><span class="comment">// 禁用默认类型（推荐做法）</span></span><br></pre></td></tr></table></figure>
+<h3><span id="resetall"><code>`resetall</code></span><a href="#resetall" class="header-anchor">#</a></h3>
+<p>重置所有编译指令为默认状态（常用于文件末尾），清除所有
+<code>define</code> 宏、恢复 <code>default_nettype</code> 等</p>
+<p>语法规则为：<code>`resetall</code></p>
+<h3><span id="celldefine-he-endcelldefine"><code>`celldefine</code> 和
+<code>`endcelldefine</code></span><a href="#celldefine-he-endcelldefine" class="header-anchor">#</a></h3>
+<p>用于将模块标记为单元模块，他们包含模块的定义。例如一些与、或、非门，一些
+PLL 单元，PAD 模型，以及一些 Analog IP 等。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="keyword">celldefine</span></span></span><br><span class="line"><span class="keyword">module</span> (</span><br><span class="line">    <span class="keyword">input</span>      clk,</span><br><span class="line">    <span class="keyword">input</span>      rst,</span><br><span class="line">    <span class="keyword">output</span>     clk_pll,</span><br><span class="line">    <span class="keyword">output</span>     flag);</span><br><span class="line">        ……</span><br><span class="line"><span class="keyword">endmodule</span></span><br><span class="line"><span class="meta">`<span class="keyword">endcelldefine</span></span></span><br></pre></td></tr></table></figure>
+<h2><span id="lian-xu-fu-zhi">连续赋值</span><a href="#lian-xu-fu-zhi" class="header-anchor">#</a></h2>
+<h2><span id="assign">assign</span><a href="#assign" class="header-anchor">#</a></h2>
+<p>可用 <code>assign</code> 语句对 <code>wire</code>
+类型信号进行连续赋值。</p>
+<p>语法规则： <code>assign 目标信号=表达式;</code> 其中目标信号必须是
+<code>wire</code> 类型</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">wire</span> a, b, c;</span><br><span class="line"><span class="keyword">assign</span> c = a &amp; b;  <span class="comment">// 逻辑与运算</span></span><br><span class="line"><span class="keyword">assign</span> c = a ? b : <span class="number">0</span>;  <span class="comment">// 三目运算符</span></span><br></pre></td></tr></table></figure>
+<h3><span id="quan-jia-qi">全加器</span><a href="#quan-jia-qi" class="header-anchor">#</a></h3>
+<p>全加器是一个实现三个一位二进制数相加的电路</p>
+<p>输入为：</p>
+<ul>
+<li><strong>A</strong> 和 <strong>B</strong>：两个待相加的二进制位</li>
+<li><strong>Cin</strong>：进位输入</li>
+</ul>
+<p>输出为：</p>
+<ul>
+<li><strong>Sum</strong>：本位和</li>
+<li><strong>Cout</strong>：进位输出</li>
+</ul>
+<p>逻辑表达式为： <span class="math display">\[
+Sum = A \oplus B \oplus Cin
+\\
+Cout = ( A \&amp; B ) + ( B \&amp; Cin ) + ( A \&amp; Cin )
+\]</span> 使用 <code>assign</code> 语句实现全加器的方法如下</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> full_adder(</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> A, B, Cin,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">wire</span> Sum, Cout</span><br><span class="line">);</span><br><span class="line">    <span class="comment">// 使用assign语句直接实现逻辑表达式</span></span><br><span class="line">    <span class="keyword">assign</span> Sum = A ^ B ^ Cin;</span><br><span class="line">    <span class="keyword">assign</span> Cout = (A &amp; B) | (B &amp; Cin) | (A &amp; Cin);</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>一些解释：</p>
+<ul>
+<li><p>进位输入 Cin 的作用：来自
+<strong>低位的进位信号</strong>，表示低位相加后是否产生进位。</p>
+<p>在计算 <strong>2 位二进制数相加</strong>（如 <span class="math inline">\(11_2+01_2\)</span> ）时：</p>
+<ul>
+<li><strong>最低位（第 0 位）</strong>：没有来自更低位的进位，因此 <span class="math inline">\(C_{in}=0\)</span>。</li>
+<li><strong>次低位（第 1 位）</strong>：最低位相加后产生进位（<span class="math inline">\(1+1=0\)</span> 余 <span class="math inline">\(1\)</span> ），因此 <span class="math inline">\(C_{in}=1\)</span>。</li>
+</ul></li>
+<li><p>进位输出 Cout 的作用：当前位相加后
+<strong>产生的进位信号</strong>，传递给 <strong>更高位</strong>
+作为进位输入。</p>
+<p>以 <span class="math inline">\(11_2+01_2\)</span> 为例：</p>
+<ul>
+<li><strong>最低位（第 0 位）</strong>：<span class="math inline">\(1+1=0\)</span> 余 <span class="math inline">\(1\)</span> ，因此 <span class="math inline">\(Sum=0\)</span> ，<span class="math inline">\(Cout=1\)</span> 。</li>
+<li><strong>次低位（第 1 位）</strong>：<span class="math inline">\(1+0+C_{in}(1)=2\)</span> ，即 <span class="math inline">\(Sum=0\)</span> ，<span class="math inline">\(Cout=1\)</span>。 最终结果为 <span class="math inline">\(100_2\)</span>（十进制 <span class="math inline">\(4\)</span> ）。</li>
+</ul></li>
+</ul>
+<h2><span id="yan-shi">延时</span><a href="#yan-shi" class="header-anchor">#</a></h2>
+<h3><span id="lian-xu-fu-zhi-shi-yan">连续赋值时延</span><a href="#lian-xu-fu-zhi-shi-yan" class="header-anchor">#</a></h3>
+<ul>
+<li>普通时延</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//A&amp;B的计算结果延时10个单位时间再赋值给Z</span></span><br><span class="line"><span class="keyword">wire</span> Z,A,B;</span><br><span class="line"><span class="keyword">assign</span> #<span class="number">10</span> Z=A&amp;B;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>隐式时延</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//声明一个wire类型变量时，对其包含一定时延的连续赋值</span></span><br><span class="line"><span class="keyword">wire</span> A,B;</span><br><span class="line"><span class="keyword">wire</span> #<span class="number">10</span> Z=A&amp;B;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>声明时延</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//声明一个wire型变量是指定一个时延。因此对该变量所有的连续赋值都会被推迟到指定的时间。除非门级建模中，一般不推荐使用此类方法建模。</span></span><br><span class="line"><span class="keyword">wire</span> A, B;</span><br><span class="line"><span class="keyword">wire</span> #<span class="number">10</span> Z ;</span><br><span class="line"><span class="keyword">assign</span> Z =A &amp; B</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>惯性时延与传输时延</p>
+<ul>
+<li><p><strong>惯性时延</strong>：默认行为，若输入脉冲宽度小于时延，输出不会响应。</p></li>
+<li><p><strong>传输时延</strong>：使用 <code>#(时延)</code>
+语法，所有输入变化都会传递到输出。</p></li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 惯性时延（宽度小于5ns的脉冲会被过滤）</span></span><br><span class="line"><span class="keyword">assign</span> #<span class="number">5</span> out = in;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传输时延（所有输入变化都会传递）</span></span><br><span class="line"><span class="keyword">assign</span> <span class="variable">#(5)</span> out = in;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3><span id="guo-cheng-fu-zhi-shi-yan">过程赋值时延</span><a href="#guo-cheng-fu-zhi-shi-yan" class="header-anchor">#</a></h3>
+<ul>
+<li>阻塞赋值时延： <code>#时延 变量 = 表达式;</code>
+先延迟，再执行赋值</li>
+<li>非阻塞赋值时延： <code>变量 &lt;= #时延 表达式;</code>
+先计算表达式，在未来时刻赋值</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">    <span class="comment">// 阻塞赋值：延迟5ns后执行赋值</span></span><br><span class="line">    #<span class="number">5</span> a = b;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 非阻塞赋值：当前周期计算，下一时延点赋值</span></span><br><span class="line">    c &lt;= #<span class="number">3</span> d;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3><span id="qi-ta-shi-yan">其他时延</span><a href="#qi-ta-shi-yan" class="header-anchor">#</a></h3>
+<p>如 事件控制时延，组合与时序逻辑中的时延 自行查找资料，不再赘述。</p>
+<h3><span id="yong-shi-yan-mo-ni-hong-fa-qi">用时延模拟触发器</span><a href="#yong-shi-yan-mo-ni-hong-fa-qi" class="header-anchor">#</a></h3>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> d_flip_flop(</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">wire</span> clk, rst_n, d,</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span> q</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">always</span> @(<span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> rst_n) <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span> (!rst_n) <span class="keyword">begin</span></span><br><span class="line">            q &lt;= #<span class="number">0</span><span class="variable">.5</span> <span class="number">1&#x27;b0</span>;  <span class="comment">// 复位延迟0.5ns</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">begin</span></span><br><span class="line">            q &lt;= #<span class="number">1</span> d;  <span class="comment">// 数据延迟1ns</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<h2><span id="guo-cheng-jie-gou">过程结构</span><a href="#guo-cheng-jie-gou" class="header-anchor">#</a></h2>
+<h3><span id="initial-yu-ju">initial语句</span><a href="#initial-yu-ju" class="header-anchor">#</a></h3>
+<p><code>initial</code>
+块中的代码在仿真开始时执行一次，执行完毕后不再重复，多个
+<code>initial</code>
+块之间相互独立，互不影响（可以理解为同步执行？）</p>
+<p>示例：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> testbench;</span><br><span class="line">    <span class="keyword">reg</span> clk, rst_n, a, b;</span><br><span class="line">    <span class="keyword">wire</span> out;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 实例化被测模块</span></span><br><span class="line">    my_module uut (<span class="variable">.clk</span>(clk), <span class="variable">.rst_n</span>(rst_n), <span class="variable">.a</span>(a), <span class="variable">.b</span>(b), <span class="variable">.out</span>(out));</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// initial块1：生成时钟信号</span></span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        clk = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">forever</span> #<span class="number">5</span> clk = ~clk;  <span class="comment">// 10个时间单位的时钟周期</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// initial块2：生成复位信号</span></span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        rst_n = <span class="number">0</span>;</span><br><span class="line">        #<span class="number">20</span> rst_n = <span class="number">1</span>;  <span class="comment">// 20个时间单位后释放复位</span></span><br><span class="line">        <span class="built_in">$display</span>(<span class="string">&quot;[%0t] 复位释放&quot;</span>, <span class="built_in">$time</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// initial块3：生成输入激励</span></span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        a = <span class="number">0</span>; b = <span class="number">0</span>;</span><br><span class="line">        #<span class="number">30</span> a = <span class="number">1</span>;      <span class="comment">// 30个时间单位后a置1</span></span><br><span class="line">        #<span class="number">20</span> b = <span class="number">1</span>;      <span class="comment">// 再20个时间单位后b置1</span></span><br><span class="line">        #<span class="number">40</span> a = <span class="number">0</span>; b = <span class="number">0</span>;  <span class="comment">// 40个时间单位后a、b置0</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// initial块4：监控输出</span></span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        <span class="built_in">$monitor</span>(<span class="string">&quot;[%0t] a=%b, b=%b, out=%b&quot;</span>, <span class="built_in">$time</span>, a, b, out);</span><br><span class="line">        #<span class="number">100</span> <span class="built_in">$finish</span>;  <span class="comment">// 100个时间单位后结束仿真</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<p>时序图如下</p>
+<figure>
+<img src="C:\Users\GBY\AppData\Roaming\Typora\typora-user-images\image-20250708231819501.png" alt="image-20250708231819501">
+<figcaption aria-hidden="true">image-20250708231819501</figcaption>
+</figure>
+<h3><span id="always-yu-ju">always语句</span><a href="#always-yu-ju" class="header-anchor">#</a></h3>
+<p>always语句是重复执行的，他从 0
+时刻开始执行其中的行为语句；当执行完最后一条语句后，便从头开始执行</p>
+<p>基本语法：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">always</span> @(敏感列表) <span class="keyword">begin</span></span><br><span class="line">    <span class="comment">// 语句块</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>边沿触发（时序逻辑）：
+<code>@(posedge 信号 or negedge 信号)</code></p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> rst_n) <span class="keyword">begin</span>  <span class="comment">// 时钟上升沿或复位下降沿触发</span></span><br><span class="line">    <span class="keyword">if</span> (!rst_n) q &lt;= <span class="number">1&#x27;b0</span>;  <span class="comment">// 异步复位</span></span><br><span class="line">    <span class="keyword">else</span> q &lt;= d;           <span class="comment">// 同步数据更新</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></li>
+<li><p>电平触发： <code>@(信号1, 信号2, ...)</code> 或
+<code>@(*)</code></p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">always</span> @(a, b, c) <span class="keyword">begin</span>  <span class="comment">// 所有输入信号变化时触发</span></span><br><span class="line">    y = (a &amp; b) | c;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 等效于：</span></span><br><span class="line"><span class="keyword">always</span> @(*) <span class="keyword">begin</span>  <span class="comment">// 自动包含所有被读取的信号</span></span><br><span class="line">    y = (a &amp; b) | c;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2><span id="guo-cheng-fu-zhi">过程赋值</span><a href="#guo-cheng-fu-zhi" class="header-anchor">#</a></h2>
+<h3><span id="zu-sai-fu-zhi">阻塞赋值</span><a href="#zu-sai-fu-zhi" class="header-anchor">#</a></h3>
+<p>按顺序依次执行，前一条语句完成后才执行下一条。</p>
+<p>适用于存在组合逻辑的情况。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">always</span> @(*) <span class="keyword">begin</span></span><br><span class="line">    temp = a &amp; b;  <span class="comment">// 第一条语句立即执行</span></span><br><span class="line">    y = temp | c;  <span class="comment">// 使用temp的最新值</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3><span id="fei-zu-sai-fu-zhi">非阻塞赋值</span><a href="#fei-zu-sai-fu-zhi" class="header-anchor">#</a></h3>
+<p>在当前时间步结束时并行执行，避免竞争条件。</p>
+<p>适用于时序逻辑中。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">    q1 &lt;= d;     <span class="comment">// 当前时钟沿计算，下一周期更新</span></span><br><span class="line">    q2 &lt;= q1;    <span class="comment">// 使用q1的旧值（上一周期的值）</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>（未完待续...）</p>
+<h1><span id="can-kao-zi-liao">参考资料</span><a href="#can-kao-zi-liao" class="header-anchor">#</a></h1>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote_genre/verilog">RUNOOB</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1TJ411R7YY?spm_id_from=333.788.videopod.episodes&amp;vd_source=2ee5fc1c6809e2f0f5d2bd967fead481&amp;p=12">正点原子手把手教你学FPGA</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.chipverify.com/">Chipverify</a></p>
+
+  </div>
+
+  
+    
+  <div class="sea-prev-next-wrapper">
+    
+    
+      <div class="next">
+        <a class="link" href="/ADC/">
+          ADC采样
+        </a>
+        <span>></span>
+      </div>
+    
+  </div>
+
+  
+</article>
+
+
+  </main>
+  <footer id="sea-footer-container">
+  <div class="sea-footer-row">
+    <div class="sea-footer-menu-link">
+      
+        <a
+          class="sea-footer-link"
+          
+            target="_blank"
+          
+          href="https://github.com/SkinCrab"
+        >
+          Github
+        </a>
+        <span class="sea-footer-link__dot">·</span>
+      
+        <a
+          class="sea-footer-link"
+          
+            target="_blank"
+          
+          href="https://t.me/aDeleted_user"
+        >
+          Telegram
+        </a>
+        <span class="sea-footer-link__dot">·</span>
+      
+    </div>
+  </div>
+  
+  
+  <div class="sea-footer-row">
+    <div class="sea-footer-copyright">
+      <span>©</span>
+      
+        2025
+      
+      <span>·</span>
+      GBYYY.
+    </div>
+    <span class="split-line">|</span>
+    <div class="sea-footer-theme-by">
+      Theme by <a class="theme" href="https://github.com/hai-zou/hexo-theme-sea" target="_blank">Sea</a>
+    </div>
+  </div>
+</footer>
+
+  
+<script src="/js/main.js"></script>
+
+
+<script src="/js/theme.js"></script>
+
+</body>
+</html>

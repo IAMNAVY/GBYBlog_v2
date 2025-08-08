@@ -31,6 +31,15 @@
       mermaid.initialize({theme: 'forest'});
     }
   </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EYH3CK3852"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-EYH3CK3852');
+  </script>
   <style>
     :root {
       --sea-color-primary: #10b981;
@@ -236,21 +245,18 @@
   
     <div class="sea-post-item">
       <h2 class="sea-post-title">
-        <a class="sea-post-link" href="/sklearn%20%E8%BD%AC%E6%8D%A2%E5%99%A8%E4%B8%8E%E9%A2%84%E4%BC%B0%E5%99%A8/">
-          sklearn-转换器与预估器
+        <a class="sea-post-link" href="/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E4%B8%8E%E8%B0%83%E4%BC%98/">
+          模型选择与调优
           
         </a>
       </h2>
       <div class="sea-post-line"></div>
       <div class="sea-post-abstract">
         
-        转换器 - 特征工程的父类#
-使用流程
-
-实例化（Transformer）
-调用fit_transform（建立分类词频矩阵）
-
-标准化
+        交叉验证#
+将训练数据分为n份，经过n组测试，取平均值得到最终结果，称作n折交叉验证。
+使得被评估的模型更加准确可信。
+如四折交叉验证： 
 
       </div>
       <div class="sea-post-meta">
@@ -270,18 +276,21 @@
   
     <div class="sea-post-item">
       <h2 class="sea-post-title">
-        <a class="sea-post-link" href="/%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9%E4%B8%8E%E8%B0%83%E4%BC%98/">
-          模型选择与调优
+        <a class="sea-post-link" href="/sklearn%20%E8%BD%AC%E6%8D%A2%E5%99%A8%E4%B8%8E%E9%A2%84%E4%BC%B0%E5%99%A8/">
+          sklearn-转换器与预估器
           
         </a>
       </h2>
       <div class="sea-post-line"></div>
       <div class="sea-post-abstract">
         
-        交叉验证#
-将训练数据分为n份，经过n组测试，取平均值得到最终结果，称作n折交叉验证。
-使得被评估的模型更加准确可信。
-如四折交叉验证： 
+        转换器 - 特征工程的父类#
+使用流程
+
+实例化（Transformer）
+调用fit_transform（建立分类词频矩阵）
+
+标准化
 
       </div>
       <div class="sea-post-meta">
